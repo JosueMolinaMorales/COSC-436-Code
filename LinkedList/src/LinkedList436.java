@@ -83,6 +83,7 @@ public class LinkedList436 {
         bigString = curr.getData().toString();
 		 for(int i = 0; i < counter - 1; i++){
             bigString +=  ( "-->" + curr.getNext().getData().toString());
+            curr = curr.getNext();
          }
         //  return bigString;	
         }
