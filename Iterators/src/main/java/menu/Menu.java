@@ -1,9 +1,8 @@
+package menu;
+
 import java.util.ArrayList;
 
 public class Menu {
-    public static final int APPETIZERS = 1;
-    public static final int MAIN_DISH = 2;
-    public static final int DESSERT = 3;
     public static final boolean HEART_HEALTHY = true;
     public static final boolean NOT_HEART_HEALTHY = false;
     private ArrayList<MenuItem> menuItems;
@@ -16,19 +15,27 @@ public class Menu {
         this.menuItems.add(item);
     }
 
+    public MenuIterator getAllItemIterator() {
+        return new AllMenuItemIterator();
+    }
+
     private class AllMenuItemIterator implements MenuIterator {
+        private int currIndex = 0;
 
         @Override
         public boolean hasNext() {
-            return false;
+            return this.currIndex < menuItems.size();
         }
 
         @Override
         public MenuItem next() {
-            return null;
+            MenuItem next = menuItems.get(currIndex);
+            currIndex++;
+            return next;
         }
     }
 
+    // TODO
     private class ItemIterator implements MenuIterator {
 
         @Override
@@ -42,6 +49,7 @@ public class Menu {
         }
     }
 
+    // TODO
     private class HeartHealthyIterator implements MenuIterator {
 
         @Override
@@ -55,6 +63,7 @@ public class Menu {
         }
     }
 
+    // TODO
     private class PriceIterator implements MenuIterator {
 
         @Override
