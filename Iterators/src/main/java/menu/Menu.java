@@ -1,6 +1,7 @@
 package menu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Menu {
     public static final boolean HEART_HEALTHY = true;
@@ -15,10 +16,28 @@ public class Menu {
         this.menuItems.add(item);
     }
 
+    public void delete(MenuIterator itr) {
+        if (itr instanceof AllMenuItemIterator) {
+            int index = ((AllMenuItemIterator) itr).currIndex - 1;
+            this.menuItems.remove(index);
+        }
+    }
+
     public MenuIterator getAllItemIterator() {
         return new AllMenuItemIterator();
     }
 
+    public MenuIterator getItemIterator(MenuCategory category) {
+        return new ItemIterator(category);
+    }
+
+    public MenuIterator getHeartHealthyIterator() {
+        return new HeartHealthyIterator();
+    }
+
+    public MenuIterator getPriceIterator(float price) {
+        return new PriceIterator(price);
+    }
     private class AllMenuItemIterator implements MenuIterator {
         private int currIndex = 0;
 
@@ -34,46 +53,63 @@ public class Menu {
             return next;
         }
     }
-
-    // TODO
     private class ItemIterator implements MenuIterator {
+        private int currIdx = 0;
+        private final List<MenuItem> filtered;
+
+        public ItemIterator(MenuCategory type) {
+            this.filtered = menuItems.stream().filter(p -> p.getCategory() == type).toList();
+        }
 
         @Override
         public boolean hasNext() {
-            return false;
+            return this.currIdx < filtered.size();
         }
 
         @Override
         public MenuItem next() {
-            return null;
+            return this.filtered.get(this.currIdx++);
         }
+
     }
 
-    // TODO
     private class HeartHealthyIterator implements MenuIterator {
 
+        private int currIdx = 0;
+        private final List<MenuItem> filtered;
+
+        public HeartHealthyIterator() {
+            this.filtered = menuItems.stream().filter(MenuItem::getHeartHealthy).toList();
+        }
+
         @Override
         public boolean hasNext() {
-            return false;
+            return this.currIdx < filtered.size();
         }
 
         @Override
         public MenuItem next() {
-            return null;
+            return this.filtered.get(this.currIdx++);
         }
     }
 
-    // TODO
     private class PriceIterator implements MenuIterator {
+
+        private int currIdx = 0;
+        private final List<MenuItem> filtered;
+
+        public PriceIterator(float price) {
+            this.filtered = menuItems.stream().filter(mi -> mi.getPrice() < price).toList();
+        }
 
         @Override
         public boolean hasNext() {
-            return false;
+            return this.currIdx < filtered.size();
         }
 
         @Override
         public MenuItem next() {
-            return null;
+            return this.filtered.get(this.currIdx++);
         }
     }
 }

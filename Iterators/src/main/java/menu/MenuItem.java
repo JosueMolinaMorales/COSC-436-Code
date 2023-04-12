@@ -22,4 +22,22 @@ public class MenuItem {
                 "\nHeart Healthy: " + this.heartHealthy +
                 "\nPrice: " + this.price;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public MenuCategory getCategory() {
+        return category;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public boolean getHeartHealthy() {
+        return heartHealthy;
+    }
+
+
 }
