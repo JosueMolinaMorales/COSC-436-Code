@@ -1,7 +1,7 @@
 package org.example.commands;
 
 public class Invoker {
-    private Aggregator aggregator;
+    private final Aggregator aggregator;
 
     public Invoker() {
         this.aggregator = new Aggregator();
@@ -20,5 +20,10 @@ public class Invoker {
     public void submitOrder() {
         SubmitOrderCommand submitOrderCommand = new SubmitOrderCommand(aggregator);
         submitOrderCommand.execute();
+    }
+
+    public void buildYourOwnBurger() {
+        BuildYourOwnBurgerCommand buildYourOwnBurgerCommand = new BuildYourOwnBurgerCommand(aggregator);
+        buildYourOwnBurgerCommand.execute();
     }
 }

@@ -16,6 +16,9 @@ public class PrintMenuCommand implements Command {
         System.out.println("| ID |   Description  |  Price |");
         System.out.println("|----|----------------|--------|");
         for (MenuItem item : menu.getMenuItems()) {
+            if (!item.getDisplay()) {
+                continue;
+            }
             System.out.printf("| %-3d| %-15s| %-6.2f|\n", item.getItemNum(), item.getDescription(), item.getPrice());
         }
         System.out.println("|----|----------------|--------|");

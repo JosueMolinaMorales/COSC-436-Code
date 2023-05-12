@@ -16,4 +16,8 @@ public class SystemInterface {
     public static void submitOrder() {
         invoker.submitOrder();
     }
+
+    public static void buildYourOwnBurger() {
+        invoker.buildYourOwnBurger();
+    }
 }

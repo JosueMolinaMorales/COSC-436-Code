@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Menu {
-    private HashMap<Integer, MenuItem> menuItems;
+    private final HashMap<Integer, MenuItem> menuItems;
 
     public Menu() {
         menuItems = new HashMap<>();

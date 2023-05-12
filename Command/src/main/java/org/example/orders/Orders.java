@@ -3,7 +3,7 @@ package org.example.orders;
 import java.util.ArrayList;
 
 public class Orders {
-    private ArrayList<OrderItem> orderItems;
+    private final ArrayList<OrderItem> orderItems;
 
     public Orders() {
         orderItems = new ArrayList<>();

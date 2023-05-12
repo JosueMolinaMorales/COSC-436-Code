@@ -1,7 +1,7 @@
 package org.example.orders;
 
 public class OrderItem {
-    private int itemNum;
+    private final int itemNum;
 
     public OrderItem(int itemNum) {
         this.itemNum = itemNum;
