@@ -1,6 +1,7 @@
 package org.example.commands;
 
 import org.example.burger.ConcreteBurger;
+import org.example.kitchen.Kitchen;
 import org.example.menu.Menu;
 import org.example.menu.MenuItem;
 import org.example.orders.Orders;
@@ -32,6 +33,8 @@ public class Aggregator {
             this.menu.addMenuItem(item);
         }
         this.orders = new Orders();
+        // Add observer kitchen
+        this.orders.addObserver(new Kitchen());
     }
 
     public Menu getMenu() {
